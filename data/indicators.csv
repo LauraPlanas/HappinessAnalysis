@@ -1,0 +1,40 @@
+indicator_name;indicator_code
+Access to elecritricity (% of poulation);EG.ELC.ACCS.ZS
+Adjusted net national income (current US$);NY.ADJ.NNTY.CD
+Adjusted net national income per capita (current US$);NY.ADJ.NNTY.PC.CD
+Adolescents out of school (% of lower secondary school age);SE.SEC.UNER.LO.ZS
+Births attended by skilled health staff (% of total);SH.STA.BRTC.ZS
+Children (0-14) living with HIV;SH.HIV.0014
+Children in employment, total (% of children ages 7-14);SL.TLF.0714.ZS
+Children out of school (% of primary school age);SE.PRM.UNER.ZS
+CO2 emissions (kt);EN.ATM.CO2E.KT
+Contraceptive prevalence, modern methods (% of women ages 15-49);SP.DYN.CONM.ZS
+CPIA gender equality rating (1=low to 6=high);IQ.CPA.GNDR.XQ
+Current health expenditure per capita (current US$);SH.XPD.CHEX.PC.CD
+Female genital mutilation prevalence (%);SH.STA.FGMS.ZS
+Fertility rate, total (births per woman);SP.DYN.TFRT.IN
+Fixed telephone subscriptions;IT.MLT.MAIN
+GDP per capita;NY.GDP.PCAP.CD
+Hospital beds (per 1,000 people);SH.MED.BEDS.ZS
+Incidence of HIV, all (per 1,000 uninfected population);SH.HIV.INCD.TL.P3
+Incidence of malaria (per 1,000 population at risk);SH.MLR.INCD.P3
+Incidence of tuberculosis (per 100,000 people);SH.TBS.INCD
+Individuals using the Internet (% of population);IT.NET.USER.ZS
+Life expectancy at birth, total (years);SP.DYN.LE00.IN
+Mobile cellular subscriptions;IT.CEL.SETS
+Mortality rate, infant (per 1,000 live births);SP.DYN.IMRT.IN
+People using at least basic drinking water services (% of population);SH.H2O.BASW.ZS
+Population density (people per sq. km of land area);EN.POP.DNST
+Prevalence of severe food insecurity in the population (%);SN.ITK.SVFI.ZS
+Primary completion rate, total (% of relevant age group);SE.PRM.CMPT.ZS
+Primary school starting age (years);SE.PRM.AGES
+Progression to secondary school (%);SE.SEC.PROG.ZS
+Proportion of seats held by women in national parliaments (%);SG.GEN.PARL.ZS
+Refugee population by country or territory of asylum;SM.POP.REFG
+Refugee population by country or territory of origin;SM.POP.REFG.OR
+Rural population;SP.RUR.TOTL
+Suicide mortality rate (per 100,000 population);SH.STA.SUIC.P5
+Surface area (sq. km);AG.SRF.TOTL.K2
+Unemployment, total (% of total labor force) (modeled ILO estimate);SL.UEM.TOTL.ZS
+Women who believe a husband is justified in beating his wife (any of five reasons) (%);SG.VAW.REAS.ZS
+Happiness Score (from 0 to 10);Happiness.Score

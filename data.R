@@ -33,6 +33,49 @@ getRegions <- function() {
   return(unique(regions))
 }
 
+getIndicators <- function() {
+  indicators <- read.csv("data/indicators.csv", sep = ";")
+  indicator_names <- arrange(indicators, indicator_name)$indicator_name
+  return(indicator_names)
+}
+
+getIndicatorName <- function(indicator_code){
+  
+  indicators <- read.csv("data/indicators.csv", sep = ";")
+  indicator_name <- indicators[which(indicators$indicator_code == indicator_code),]$indicator_name
+  
+  return(indicator_name)
+  
+}
+
+getIndicatorCode <- function(indicator_name){
+  
+  indicators <- read.csv("data/indicators.csv", sep = ";")
+  indicator_code <- indicators[which(indicators$indicator_name == indicator_name),]$indicator_code
+  
+  return(indicator_code)
+  
+}
+
+get6Indicators <- function(){
+  indicators <- getData()
+  
+  indicators <- indicators %>% select("Country.Name", "year", 
+                                      "EN.ATM.CO2E.KT", "NY.GDP.PCAP.CD",
+                                      "SP.DYN.LE00.IN", "SP.DYN.IMRT.IN",
+                                      "EN.POP.DNST", "Happiness.Score")
+  
+  return(indicators)
+}
+
+get6IndicatorsList <- function(){
+  indicator_names <- read.csv("data/indicators.csv", sep = ";")
+  ind6 <- c("EN.ATM.CO2E.KT", "NY.GDP.PCAP.CD",
+            "SP.DYN.LE00.IN", "SP.DYN.IMRT.IN",
+            "EN.POP.DNST", "Happiness.Score")
+  indicator_names <- indicator_names[which(indicator_names$indicator_code %in% ind6),]
+  return(indicator_names$indicator_name)
+}
 
 
 
