@@ -15,17 +15,19 @@ source("data.R")
 sidebar <- sidebarMenu(
     menuItem("World indicators", tabName="page1", icon=icon("globe-americas")),
     menuItem("Country analysis", tabName="page2", icon=icon("flag")),
-    menuItem("Correlated indicators", tabName="page3", icon=icon("chart-line")),
+    menuItem("Indicators correlation", tabName="page3", icon=icon("chart-line")),
     menuItem("About", tabName="about", icon=icon("info-circle"))
     
 )
 
 # Page 1 -------------------------------------------------
 page1_body <- tabItem(tabName = "page1",
+                      h2("World indicators"),
                       
                       column(width = 8,
                              
                              box(title="Filters",
+                                 status = 'danger', solidHeader = TRUE,
                                  width = NULL,
                                  
                                  fluidRow(
@@ -50,6 +52,7 @@ page1_body <- tabItem(tabName = "page1",
                              
                              box(title="Worldwide indicators",
                                  width = NULL,
+                                 status = 'primary', solidHeader = TRUE,
                                  plotlyOutput("map")
                              )
                              
@@ -57,8 +60,9 @@ page1_body <- tabItem(tabName = "page1",
                       
                       column(width = 4,
 
-                          box(title="Table",
+                          box(title="Countries ordered by indicator",
                               width = NULL,
+                              status = 'primary', solidHeader = TRUE,
                               dataTableOutput("indicators_table")
                           )
                           
@@ -70,10 +74,13 @@ page1_body <- tabItem(tabName = "page1",
 
 # Page 2 --------------------------------------------------
 page2_body <- tabItem(tabName = "page2",
+                      h2("Country Analysis"),
+                      
                       fluidRow(
                           column(width = 3,
                                  box(title="Filters",
                                      width = NULL,
+                                     status = 'danger', solidHeader = TRUE,
                                      selectInput("country2", "Country", choices=getCountries()),
                                      selectInput("year2", "Year", choices=getYears())
                                  )
@@ -101,6 +108,7 @@ page2_body <- tabItem(tabName = "page2",
                           
                           box(title="Temporal evolution of selected indicator",
                               width = 12,
+                              status = 'primary', solidHeader = TRUE,
                               selectInput("indicator2", "Indicator for graph", choices=get6IndicatorsList(),
                                           selected="Happiness Score (from 0 to 10)"),
                               plotlyOutput("temporal_evolution")
@@ -112,10 +120,13 @@ page2_body <- tabItem(tabName = "page2",
 
 
 page3_body <- tabItem(tabName="page3",
+                      h2("Indicators correlation"),
+                      
                       
                       fluidRow(
                           box(title = "Select axes",
                               width = 10, 
+                              status = 'danger', solidHeader = TRUE,
                               column(width=6, 
                                      selectInput("indicator3_x", "Indicator X Axis", choices=getIndicators(),
                                           selected="Happiness Score (from 0 to 10)")
@@ -133,15 +144,53 @@ page3_body <- tabItem(tabName="page3",
                     
                         box(title="Correlation coefficient",
                             width = 2,
+                            status = 'info', solidHeader = TRUE,
                             h1(textOutput("correlation"), style = "font-size:45px;")
-                            ),
+                            )
                           
                           
                       ),
                       
                       box(title = "Correlation between indicators",
                           width = 12,
+                          status = 'primary', solidHeader = TRUE,
                           plotlyOutput("correlation_graph")
+                          )
+)
+
+
+about_body <- tabItem(tabName="about",
+                      
+                      box(title="About the project",
+                         "This R Shiny Application is using data from the World Development Indicators dataset from the 
+                         World Bank and a Happiness survey data from a Kaggle dataset. The merge of these 2 datasets
+                         can be found in the following GitHub project:",
+                         br(),
+                         tags$a(href="https://github.com/LauraPlanas/WDI_happiness_merge", "GitHub: WDI and Happiness dataset merge"),
+                         
+                         br(),
+                         br(),
+                         "This project is part of the subject Data Visualitzation from the Data Science Master's Degree from the Open
+                         University of Catalonia (UOC)."
+                         
+                          
+                      ),
+                      
+                      box(title="The code",
+                          "You can check the code to run this application here: ",
+                          br(),
+                          tags$a(href="https://github.com/LauraPlanas/HappinessAnalysis", "GitHub: Happiness Analysis")
+                      ),
+                      
+                      box(title="Author",
+                          "Thanks for checking my application!", icon("heart"),
+                          br(),
+                          "I'm Laura Planas Simón, you can find me in ",
+                          br(),
+                          br(),
+                          tags$a(href="https://www.linkedin.com/in/laura-planas/", icon("fab fa-linkedin", "fa-2x")),
+                          tags$a(href="https://github.com/LauraPlanas", icon("fab fa-github", "fa-2x"))
+                          
                           )
 )
 
@@ -155,10 +204,9 @@ body <- tabItems(
         
         page3_body,
         
-        tabItem(tabName="about",
-                h2("About")
+        about_body
             
-        )
+        
 )
     
 
@@ -179,8 +227,37 @@ ui <- dashboardPage(
     sidebar=dashboardSidebar(
         sidebar
     ),
-    body=dashboardBody(body),
-    footer=dashboardFooter()
+    body=dashboardBody(
+        tags$style(HTML("
+
+
+.box.box-solid.box-danger>.box-header {
+  color:#fff;
+  background:#A9A9A9
+                    }
+
+.box.box-solid.box-danger{
+border-bottom-color:#A9A9A9;
+border-left-color:#A9A9A9;
+border-right-color:#A9A9A9;
+border-top-color:#A9A9A9;
+}
+
+.box.box-danger>.box-header {
+  color:#000000;
+  background:#fff
+                    }
+
+.box.box-danger{
+border-bottom-color:#A9A9A9;
+border-left-color:#A9A9A9;
+border-right-color:#A9A9A9;
+border-top-color:#A9A9A9;
+}
+
+                                    ")),
+        body
+        )
 )
 
 
@@ -514,9 +591,6 @@ server <- function(input, output) {
         
         correlation <- round(cor(data$X, data$Y, use="complete.obs"), digits=2)
         correlation
-        
-        # valueBox(subtitle = "Correlation coefficient", correlation, icon=icon("chart-line"), 
-        #         color="light-blue", width=NULL)
         
 
     }) 
